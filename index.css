@@ -1,0 +1,316 @@
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --accent: rgba(255, 255, 255, 0.95);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  color: white;
+  min-height: 100vh;
+  background-image: url("https://www.thisiscolossal.com/wp-content/uploads/2023/05/temple-of-books-6.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+.topbar {
+  top: 0;
+  padding: 15px 30px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 20;
+  gap: 12px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  background: linear-gradient(to bottom, #000000, #391700);
+}
+
+.navbar-menu {
+  line-height: 30px;
+}
+
+.glass {
+  background: var(--glass-bg);
+  border-radius: 12px;
+  padding: 6px 12px;
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.45);
+  position: relative;
+}
+
+.navbar-submenu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  line-height: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.brand .logo-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.navlinks {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.navlinks a {
+  text-decoration: none;
+  color: inherit;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  opacity: 0.95;
+}
+.navlinks a:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* page layout */
+.stage {
+  width: 100%;
+  max-width: 1320px;
+  display: grid;
+  grid-template-columns: 320px 1fr 320px;
+  gap: 28px;
+  align-items: center;
+  z-index: 10;
+}
+
+/* Glass panel common */
+.panel {
+  background: var(--glass-bg);
+  border-radius: 16px;
+  padding: 20px 40px;
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  min-height: 450px;
+}
+
+/* left panel - team */
+.team h3 {
+  font-size: 20px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  color: var(--accent);
+  display: flex;
+  justify-self: center;
+}
+
+.member {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 14px;
+  margin-left: 10px;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 18px;
+  flex: 0 0 56px;
+  box-shadow: inset 0 -6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.member .meta {
+  display: flex;
+  flex-direction: column;
+}
+.member .meta .name {
+  font-weight: 700;
+}
+.member .meta .role {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+/* center title */
+.center {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+}
+
+.hero-title {
+  font-size: 56px;
+  line-height: 0.95;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 2px 0 rgba(255, 255, 255, 0.02);
+}
+
+/* right panel - menu */
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.menu ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.menu li {
+  padding: 8px 0;
+  font-weight: 600;
+  opacity: 0.95;
+  font-size: 15px;
+  cursor: default;
+}
+
+.menu .section-title {
+  padding-bottom: 12px;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.section-title-text {
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  width: auto;
+}
+
+.menu .muted {
+  font-size: 13px;
+  opacity: 0.75;
+  font-weight: 500;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.menu .muted:hover {
+  text-decoration: underline;
+}
+
+/* responsive */
+@media (max-width: 1100px) {
+  .stage {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    padding: 20px;
+    gap: 18px;
+  }
+  .center {
+    min-height: 320px;
+  }
+  .hero-title {
+    font-size: 42px;
+    margin-top: 100px;
+  }
+  .panel {
+    align-self: start;
+    height: fit-content;
+    min-height: auto;
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .panel:nth-child(1) {
+    display: none;
+  }
+  .menu {
+    flex-direction: row;
+    height: max-content;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 50px;
+  }
+  .section-title {
+    height: fit-content;
+  }
+  #menu-title {
+    height: fit-content;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand {
+    font-size: 16px;
+  }
+  .hero-title {
+    font-size: 30px;
+  }
+  .avatar {
+    width: 46px;
+    height: 46px;
+  }
+}

@@ -1,0 +1,367 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100vh;
+}
+body {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  color: white;
+  min-height: 100vh;
+  background-image: url("https://www.thisiscolossal.com/wp-content/uploads/2023/05/temple-of-books-6.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(3px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+.topbar {
+  top: 0;
+  padding: 15px 30px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 20;
+  gap: 12px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  background: linear-gradient(to bottom, #000000, #391700);
+}
+
+.navbar-menu {
+  line-height: 30px;
+}
+
+.glass {
+  background: var(--glass-bg);
+  border-radius: 12px;
+  padding: 6px 12px;
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.45);
+  position: relative;
+}
+
+.navbar-submenu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  line-height: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.brand .logo-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.navlinks {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.navlinks a {
+  text-decoration: none;
+  color: inherit;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  opacity: 0.95;
+}
+.navlinks a:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+main {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 100px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  background: hsl(0, 0%, 90%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 10px 20px;
+  gap: 25px;
+  width: 100%;
+  height: fit-content;
+  padding: 10px 40px;
+  z-index: 10;
+}
+
+.icon-circle {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: hsl(0, 0%, 90%);
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1) inset,
+    0 -2px 5px rgba(255, 255, 255, 0.75) inset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-circle img {
+  width: 30px;
+  height: 30px;
+}
+
+.section-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: hsl(0, 0%, 90%);
+  border-radius: 30px;
+  padding: 10px 20px;
+  flex-grow: 1;
+  box-shadow: inset 0 4px 5px rgba(0, 0, 0, 0.1),
+    0 -2px 5px rgba(255, 255, 255, 0.75) inset;
+}
+
+.search-bar label {
+  font-size: 14px;
+  color: #444;
+  margin-right: 6px;
+  white-space: nowrap;
+}
+
+.search-bar select {
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  margin-right: 12px;
+  width: auto;
+  display: inline-block;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: #555;
+  width: 100%;
+}
+
+.search-bar input::placeholder {
+  color: #aaa;
+}
+
+.search-bar .search-icon {
+  font-size: 18px;
+  color: #555;
+  margin-left: 8px;
+  cursor: default;
+}
+
+#data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: hsl(0, 0%, 90%);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+th {
+  padding: 20px;
+}
+
+td {
+  padding: 10px;
+  border-top: 1px solid hsl(0, 0%, 80%);
+  text-align: center;
+}
+
+thead tr {
+  background: linear-gradient(to bottom, #000000, #391700);
+  color: hsl(0, 0%, 90%);
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+}
+
+tr:nth-child(2n) {
+  background: hsl(0, 0%, 85%);
+}
+
+tbody tr:hover {
+  background: hsl(0, 0%, 80%);
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+.delete_button {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset,
+    0 -1px 3px rgba(255, 255, 255, 0.837) inset;
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.delete_button:hover {
+  transform: scale(1.05);
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2),
+    0 -1px 3px rgba(255, 255, 255, 0.837);
+}
+
+td:nth-child(1) {
+  padding: 0;
+  height: fit-content;
+}
+
+.add-button {
+  width: 100%;
+  height: 55px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #333;
+  font-weight: 500;
+}
+
+.add-button:hover {
+  background-color: hsl(0, 0%, 80%);
+}
+
+@media (max-width: 700px) {
+  body {
+    padding: 20px;
+  }
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    gap: 15px;
+  }
+  .search-bar {
+    width: 100%;
+  }
+  .section-name {
+    text-align: center;
+  }
+}
+
+/* === Modal style === */
+.modal {
+  display: none; /* Ascuns inițial */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#bookForm label {
+  color: #333;
+}
+
+.modal-content {
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.close {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+  color: #888;
+}
+
+.close:hover {
+  color: red;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.submit-btn {
+  background-color: #391700;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #2b1100;
+}

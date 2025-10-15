@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Evgen's Library - Mockup</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <header class="topbar" role="banner" aria-label="Top navigation">
+      <a class="brand" href="index.html">
+        <span class="logo-dot">E</span>
+        <span>Evgen`s Library</span>
+      </a>
+
+      <nav class="navlinks" role="navigation" aria-label="Main">
+        <a href="#">Home</a>
+        <div class="navbar-menu">
+          <a href="#">Tables ›</a>
+          <div class="navbar-submenu glass">
+            <a href="books.php">Books</a>
+            <a href="">Readers</a>
+          </div>
+        </div>
+        <a href="#">Delays</a>
+        <a href="#">Publishing houses</a>
+        <a href="#">Need help?</a>
+      </nav>
+    </header>
+
+    <main class="stage" role="main" aria-label="Main content">
+      <!-- left: team -->
+      <aside class="panel team" aria-labelledby="team-title">
+        <h3 id="team-title">Our beloved team</h3>
+
+        <div class="member">
+          <div class="avatar">P</div>
+          <div class="meta">
+            <div class="name">Popusoi Eugen</div>
+            <div class="role">Library Manager</div>
+          </div>
+        </div>
+
+        <div class="member">
+          <div class="avatar">P</div>
+          <div class="meta">
+            <div class="name">Popusoi Eugen</div>
+            <div class="role">Main Librarian</div>
+          </div>
+        </div>
+
+        <div class="member">
+          <div class="avatar">P</div>
+          <div class="meta">
+            <div class="name">Popusoi Eugen</div>
+            <div class="role">Library Assistant</div>
+          </div>
+        </div>
+
+        <div class="member">
+          <div class="avatar">P</div>
+          <div class="meta">
+            <div class="name">Popusoi Eugen</div>
+            <div class="role">Library Technician</div>
+          </div>
+        </div>
+
+        <div class="member">
+          <div class="avatar">P</div>
+          <div class="meta">
+            <div class="name">Popusoi Eugen</div>
+            <div class="role">Web Developer</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- center: hero title -->
+      <section class="center" aria-labelledby="hero">
+        <h1 id="hero" class="hero-title">
+          Welcome to<br />
+          Evgen`s<br />
+          Library
+        </h1>
+      </section>
+
+      <!-- right: menu -->
+      <aside class="panel menu" aria-labelledby="menu-title">
+        <div class="section-title" id="menu-title">
+          <div class="section-title-text">Tables ›</div>
+
+          <ul>
+            <li class="muted"><a href="books.php">Books</a></li>
+            <li class="muted">Readers</li>
+            <li class="muted">Delays</li>
+            <li class="muted">Publishing houses</li>
+          </ul>
+        </div>
+
+        <div class="section-title">
+          <div class="section-title-text">Search books by ›</div>
+          <ul>
+            <li class="muted">Title</li>
+            <li class="muted">Author</li>
+            <li class="muted">Publishing house</li>
+            <li class="muted">Price</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+  </body>
+
+  <script>
+    const submenu = document.querySelector(".navbar-submenu");
+    submenu.style.opacity = 0;
+    submenu.style.display = "none";
+    document
+      .querySelector(".navbar-menu")
+      .addEventListener("mouseenter", () => {
+        submenu.style.opacity = 1;
+        submenu.style.display = "flex";
+      });
+
+    document
+      .querySelector(".navbar-menu")
+      .addEventListener("mouseleave", () => {
+        submenu.style.opacity = 0;
+        submenu.style.display = "none";
+      });
+  </script>
+</html>
