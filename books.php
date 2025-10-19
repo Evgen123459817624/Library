@@ -25,10 +25,10 @@
           <a href="#">Tables ›</a>
           <div class="navbar-submenu glass">
             <a href="books.php">Books</a>
-            <a href="">Readers</a>
+            <a href="readers.php">Readers</a>
           </div>
         </div>
-        <a href="#">Delays</a>
+        <a href="readers.php?results=delays">Delays</a>
         <a href="#">Publishing houses</a>
         <a href="#">Need help?</a>
       </nav>
@@ -138,7 +138,8 @@
                 <span class="close" id="closeEditModalBtn">&times;</span>
                 <h3>Edit Book</h3>
                 <form id="editForm">
-                    <input type="hidden" name="id" id="edit-id">
+                    <label>ID:</label>
+                    <input type="text" name="id" id="edit-id" readonly>
                     <label>Title:</label>
                     <input type="text" name="title" id="edit-title" required>
                     <label>Author:</label>
