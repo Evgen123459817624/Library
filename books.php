@@ -45,10 +45,10 @@
             <form class="search-bar" id="searchForm" method="GET" action="">
                 <label for="search">Search by:</label>
                 <select id="filter">
-                    <option>Price</option>
-                    <option>Title</option>
-                    <option>Author</option>
-                    <option>P. House</option>
+                    <option value="price">Price</option>
+                    <option value="title">Title</option>
+                    <option value="author">Author</option>
+                    <option value="phouse">P. House</option>
                 </select>
                 <input type="text" id="search" placeholder="What are you looking for...">
                 <button class="search-icon" type="submit">🔍</button>
@@ -103,7 +103,7 @@
                             <td>
                                 <form method='POST' style='margin:0'>
                                     <input type='hidden' name='delete_id' value='{$row["ID_Book"]}'>
-                                    <button type='submit' class='delete_button'>❌</button>
+                                    <button type='submit' class='delete_button' onclick=\"event.stopPropagation(); return window.confirm('Are you sure you want to delete this book? This action cannot be undone.');\">❌</button>
                                 </form>
                             </td>
                         </tr>";
@@ -121,14 +121,14 @@
                 <h3>Add New Book</h3>
                 <form id="bookForm">
                     <label>Title:</label>
-                    <input type="text" name="title" required>
+                    <input type="text" name="title" id="add-title" required>
                     <label>Author:</label>
-                    <input type="text" name="author" required>
+                    <input type="text" name="author" id="add-author" required>
                     <label>Publishing House:</label>
-                    <input type="text" name="publishing_house" required>
+                    <input type="text" name="publishing_house" id="add-publishing_house" required>
                     <label>Price:</label>
-                    <input type="number" name="price" required>
-                    <button type="submit" class="submit-btn">Submit</button>
+                    <input type="number" name="price" id="add-price" required>
+                    <button type="submit" name="add_book" class="submit-btn">Submit</button>
                 </form>
             </div>
         </div>
@@ -197,10 +197,11 @@
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            const title = form.title.value;
-            const author = form.author.value;
-            const house = form.publishing_house.value;
-            const price = form.price.value;
+            // read values from inputs (names: title, author, publishing_house, price)
+            const title = document.getElementById('add-title').value;
+            const author = document.getElementById('add-author').value;
+            const house = document.getElementById('add-publishing_house').value;
+            const price = document.getElementById('add-price').value;
 
             // Trimite datele la PHP
             const response = await fetch("add_book.php", {
@@ -226,7 +227,7 @@
                     <td>
                         <form method='POST' style='margin:0'>
                             <input type='hidden' name='delete_id' value=''>
-                            <button type='submit' class='delete_button'>❌</button>
+                            <button type='submit' class='delete_button' onclick=\"event.stopPropagation(); return window.confirm('Are you sure you want to delete this book? This action cannot be undone.');\">❌</button>
                         </form>
                     </td>
                 `;
@@ -310,8 +311,16 @@
             e.preventDefault();
         });
 
-        
-
+        const searchBySelect = document.getElementById("filter"); 
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const searchBy = urlParams.get('searchby');
+        if (searchBy) {
+            if (searchBy === 'price') searchBySelect.value = 'price';
+            else if (searchBy === 'title') searchBySelect.value = 'title';
+            else if (searchBy === 'author') searchBySelect.value = 'author';
+            else if (searchBy === 'phouse') searchBySelect.value = 'phouse';
+        }
 
     </script>
 </body>
