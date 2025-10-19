@@ -20,7 +20,7 @@
       </a>
 
       <nav class="navlinks" role="navigation" aria-label="Main">
-        <a href="#">Home</a>
+        <a href="index.html">Home</a>
         <div class="navbar-menu">
           <a href="#">Tables ›</a>
           <div class="navbar-submenu glass">
@@ -42,17 +42,17 @@
 
             <div class="section-name">Books</div>
 
-            <div class="search-bar">
-            <label for="search">Search by:</label>
-            <select id="filter">
-                <option>Price</option>
-                <option>Title</option>
-                <option>Author</option>
-                <option>P. House</option>
-            </select>
-            <input type="text" id="search" placeholder="What are you looking for...">
-            <span class="search-icon">🔍</span>
-            </div>
+            <form class="search-bar" id="searchForm" method="GET" action="">
+                <label for="search">Search by:</label>
+                <select id="filter">
+                    <option>Price</option>
+                    <option>Title</option>
+                    <option>Author</option>
+                    <option>P. House</option>
+                </select>
+                <input type="text" id="search" placeholder="What are you looking for...">
+                <button class="search-icon" type="submit">🔍</button>
+            </form>
         </div>
 
         <?php
@@ -90,7 +90,12 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "
-                        <tr>
+                        <tr class='book-row'
+                        data-id='{$row['ID_Book']}'
+                        data-title='{$row['Title']}'
+                        data-author='{$row['Author']}'
+                        data-house='{$row['Publishing_House']}'
+                        data-price='{$row['Price']}'>
                             <td>{$row["Title"]}</td>
                             <td>{$row["Author"]}</td>
                             <td>{$row["Publishing_House"]}</td>
@@ -127,6 +132,26 @@
                 </form>
             </div>
         </div>
+
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeEditModalBtn">&times;</span>
+                <h3>Edit Book</h3>
+                <form id="editForm">
+                    <input type="hidden" name="id" id="edit-id">
+                    <label>Title:</label>
+                    <input type="text" name="title" id="edit-title" required>
+                    <label>Author:</label>
+                    <input type="text" name="author" id="edit-author" required>
+                    <label>Publishing House:</label>
+                    <input type="text" name="publishing_house" id="edit-house" required>
+                    <label>Price:</label>
+                    <input type="number" name="price" id="edit-price" required>
+                    <button type="submit" class="submit-btn">Save</button>
+                </form>
+            </div>
+        </div>
+
     </main>
 
     <script>
@@ -215,6 +240,78 @@
                 alert("Eroare la inserarea în baza de date!");
             }
         });
+
+
+        const rows = document.querySelectorAll(".book-row");
+        const editModal = document.getElementById("editModal");
+        const closeEditModalBtn = document.getElementById("closeEditModalBtn");
+
+        rows.forEach(row => {
+        row.addEventListener("click", () => {
+            // preia valorile din data-*
+            document.getElementById("edit-id").value = row.dataset.id;
+            document.getElementById("edit-title").value = row.dataset.title;
+            document.getElementById("edit-author").value = row.dataset.author;
+            document.getElementById("edit-house").value = row.dataset.house;
+            document.getElementById("edit-price").value = row.dataset.price;
+
+            // deschide pop-up-ul
+            editModal.style.display = "block";
+        });
+        });
+
+        // închide modalul
+        closeEditModalBtn.addEventListener("click", () => {
+            editModal.style.display = "none";
+        });
+
+        // click în afara ferestrei → închide
+        window.addEventListener("click", (e) => {
+            if (e.target === editModal) editModal.style.display = "none";
+        });
+
+        // trimiterea formularului către edit_book.php
+        document.getElementById("editForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const response = await fetch("edit_book.php", {
+            method: "POST",
+            body: formData
+        });
+        const result = await response.text();
+        if (result.trim() === "success") {
+            alert("Book updated successfully!");
+            editModal.style.display = "none";
+            location.reload();
+        } else {
+            alert("Error updating book!");
+        }
+        });
+
+
+        const searchForm = document.getElementById("searchForm");
+        searchForm.addEventListener("submit", (e) => {
+            const filter = document.getElementById("filter").value.toLowerCase();
+            const query = document.getElementById("search").value.toLowerCase();
+
+            const rows = document.querySelectorAll("#data-table tbody tr");
+            rows.forEach(row => {
+                let text = "";
+                if (filter === "price") text = row.cells[3].innerText.toLowerCase();
+                else if (filter === "title") text = row.cells[0].innerText.toLowerCase();
+                else if (filter === "author") text = row.cells[1].innerText.toLowerCase();
+                else if (filter === "p. house") text = row.cells[2].innerText.toLowerCase();
+
+                if (text.includes(query) && filter !== "price") row.style.display = "";
+                else if(filter === "price" && Number(text.split(" ")[0]) >= Number(query)) row.style.display = "";
+                else row.style.display = "none";  
+            });
+
+            e.preventDefault();
+        });
+
+        
+
 
     </script>
 </body>
