@@ -29,7 +29,7 @@
           </div>
         </div>
         <a href="readers.php?results=delays">Delays</a>
-        <a href="#">Publishing houses</a>
+        <a href="publishing_houses.php">Publishing houses</a>
         <a href="#">Need help?</a>
       </nav>
     </header>
